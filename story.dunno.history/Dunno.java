@@ -1,4 +1,6 @@
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,6 +13,10 @@ public class Dunno extends HumanConstruct implements Creature {
     public Dunno(String name, String lastname, Planet planet) {
         super(name, lastname);
         this.planet = planet;
+    }
+
+    public Dunno() {
+        super();
     }
 
 
@@ -53,7 +59,9 @@ public class Dunno extends HumanConstruct implements Creature {
                     System.out.println("Ел специальную еду для космонавтов из тюбика зубной пасты");
                     break;
                 case 1:
-                    System.out.println("Сны были как на земле, то есть обычные");
+                    System.out.println("Сны были как на земле, то есть обычные.\n " +
+                            "Например:");
+                    getDream();
                     break;
                 case 2:
                     System.out.println("Жители Давилона были очень гостеприимны");
@@ -97,5 +105,33 @@ public class Dunno extends HumanConstruct implements Creature {
                 "lastname=" + this.getLastName() + " " +
                 "planet=" + planet +
                 '}';
+    }
+
+    private void getDream() {
+//        planet = this.planet;
+        Dream dream = new Dream() {
+            @Override
+            public void makeDream() {
+                if(planet == Planet.EARTH) {
+                    Random random = new Random();
+                    showDream(random.nextInt(3));
+                }
+            }
+
+            private void showDream(long number) {
+                switch((int)number) {
+                    case 0:
+                        System.out.println("Я видел сон о котиков");
+                        break;
+                    case 1:
+                        System.out.println("Мне приснился сам Илон Маск");
+                        break;
+                    case 2:
+                        System.out.println("Про свой компуктер");
+                        break;
+                }
+            }
+        };
+        dream.makeDream();
     }
 }

@@ -10,6 +10,11 @@ abstract class HumanConstruct implements Creature, Human {
         this.name = name;
         this.lastname = lastname;
     }
+
+    public HumanConstruct() {
+
+    }
+
     static void fikl() {
         System.out.println("I love you");
     }
