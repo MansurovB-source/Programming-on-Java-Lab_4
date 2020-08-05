@@ -15,6 +15,10 @@ public class Dunno extends HumanConstruct implements Creature {
         this.planet = planet;
     }
 
+    public Dunno(String name, String lastname) {
+        super(name, lastname);
+    }
+
     public Dunno() {
         super();
     }
@@ -48,6 +52,16 @@ public class Dunno extends HumanConstruct implements Creature {
     @Override
     public void setPlanet(Planet planet) {
         this.planet = planet;
+    }
+
+    public void setRandomPlanet() {
+        Random random = new Random();
+
+        if(random.nextInt(3) == 0) {
+            this.planet = Planet.SPACE;
+        } else if (random.nextInt(3) == 1) {
+            this.planet = Planet.SPACE;
+        } else this.planet = Planet.EARTH;
     }
 
     void getQuestions(HumanConstruct humanConstruct, int question_number) {
@@ -138,6 +152,10 @@ public class Dunno extends HumanConstruct implements Creature {
         private double z;
 
         public Coordinate(double x, double y, double z) {
+            if(x < 0 || y < 0 || z < 0) {
+                throw new CoordinateException("\n" +
+                        "Object coordinates cannot be negative");
+            }
             this.x = x;
             this.y = y;
             this.z = z;
@@ -157,16 +175,16 @@ public class Dunno extends HumanConstruct implements Creature {
 
     }
 
-    void soar(double x, double y, double z) {
+    public void soar(Coordinate coordinate) {
         class Soar implements SoaringFlight {
             @Override
-            public void soar(double x, double y, double z) {
-                if((int)x == 0 && (int)y == 0 && (int)z == 0) {
+            public void soar(Dunno.Coordinate coordinate) {
+                if((int)coordinate.getX() == 0 && (int)coordinate.getY() == 0 && (int)coordinate.getZ() == 0) {
                     System.out.println("Я на открытом космосе, ураа!!!");
                 }
             }
         }
         Soar soar = new Soar();
-        soar.soar(x, y, z);
+        soar.soar(coordinate);
     }
 }
