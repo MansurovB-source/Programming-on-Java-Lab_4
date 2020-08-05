@@ -1,10 +1,14 @@
+
+
 /**
  * Created by IntelliJ IDEA.
  * Author: Behruz Mansurov
  */
 public class Start {
     public static void main(String[] args) {
-        Dunno dunno = new Dunno("Behruz", "Mansurov", Planet.EARTH);
+
+        Dunno dunno = new Dunno("Behruz", "Mansurov");
+        dunno.setRandomPlanet();
 
         Journalist journalist1 = new Journalist("Jhon", "Jonas");
         Journalist journalist2 = new Journalist("Jhon", "Jonas");
@@ -36,9 +40,11 @@ public class Start {
 
 
 
-        } else if(dunno.getPlanet() == Planet.MOON) {
+        } else if(dunno.getPlanet() == Planet.SPACE) {
+            Dunno.Coordinate coordinate = new Dunno.Coordinate(00, 0, 0);
+            dunno.soar(coordinate);
+        } else
             System.out.println("Nothing, I'll add something after");
-        }
 
     }
 }
