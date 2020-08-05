@@ -61,7 +61,7 @@ public class Dunno extends HumanConstruct implements Creature {
                 case 1:
                     System.out.println("Сны были как на земле, то есть обычные.\n " +
                             "Например:");
-                    getDream();
+                    dream.makeDream();
                     break;
                 case 2:
                     System.out.println("Жители Давилона были очень гостеприимны");
@@ -107,7 +107,6 @@ public class Dunno extends HumanConstruct implements Creature {
                 '}';
     }
 
-    private void getDream() {
 //        planet = this.planet;
         Dream dream = new Dream() {
             @Override
@@ -132,6 +131,42 @@ public class Dunno extends HumanConstruct implements Creature {
                 }
             }
         };
-        dream.makeDream();
+
+    public static class Coordinate {
+        private double x;
+        private double y;
+        private double z;
+
+        public Coordinate(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public double getX() {
+            return x;
+        }
+
+        public double getY() {
+            return y;
+        }
+
+        public double getZ() {
+            return z;
+        }
+
+    }
+
+    void soar(double x, double y, double z) {
+        class Soar implements SoaringFlight {
+            @Override
+            public void soar(double x, double y, double z) {
+                if((int)x == 0 && (int)y == 0 && (int)z == 0) {
+                    System.out.println("Я на открытом космосе, ураа!!!");
+                }
+            }
+        }
+        Soar soar = new Soar();
+        soar.soar(x, y, z);
     }
 }
